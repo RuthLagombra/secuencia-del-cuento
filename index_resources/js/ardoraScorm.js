@@ -1,20 +1,20 @@
 //Creado con Ardora - www.webardora.net
 //bajo licencia Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 //para otros usos contacte con el autor
-var api=null;var apiHandle = null;var apiAttempts = 0; var apiStatus = "";var apiInput=0;
-window.addEventListener("load", function() {loadPage();});window.addEventListener("beforeunload", function (e) {unloadPage();});
-function loadPage(){cssColors(); startTime = new Date().getTime();api = getAPIHandle();
+var api=null;var apiHandle = null;var apiAttempts = 0; var apiStatus = "";var apiInput=0; function loadPage(){cssColors(); startTime = new Date().getTime();api = getAPIHandle();
 if (api == null){}else{api.LMSInitialize(""); apiStatus=api.LMSGetValue("cmi.core.lesson_status");if ((apiStatus!="failed") && (apiStatus!="passed")){
 api.LMSSetValue("cmi.core.lesson_status", "failed");}else{if ((scoOk==0) && (scoWrong==0)){api.LMSSetValue("cmi.core.lesson_status", "failed");}
 else{if (apiStatus=="passed"){if (scoOk==0){api.LMSSetValue("cmi.core.lesson_status", "failed");}else{
 if (tiButtonTime){
-$("#ardoraActCanvas").unbind("mousedown");var canvas = document.getElementById("ardoraActCanvas");canvas.width = canvas.width;
+clearInterval(interval);$("#ardoraActCanvas").unbind("mousedown");var canvas = document.getElementById("ardoraActCanvas");canvas.width = canvas.width;
 }
-$("#ardoraActCanvas").attr("aria-label",messageOk); showMessage("Ok");$("#buttonOk").remove();apiInput=1;}}
+document.getElementById("ardoraActSel").style["visibility"] = "hidden";
+$("#ardoraActCanvas").attr("aria-label",messageOk); showMessage("Ok");apiInput=1;}}
 if (apiStatus=="failed"){if (scoWrong==0){api.LMSSetValue("cmi.core.lesson_status", "failed");}else{
 if (tiButtonTime){
-$("#ardoraActCanvas").unbind("mousedown");var canvas = document.getElementById("ardoraActCanvas");canvas.width = canvas.width;
+clearInterval(interval);$("#ardoraActCanvas").unbind("mousedown");var canvas = document.getElementById("ardoraActCanvas");canvas.width = canvas.width;
 }
+document.getElementById("ardoraActSel").style["visibility"] = "hidden";
 showMessage("scoMessage");apiInput=1;}}}}
 var aluName = api.LMSGetValue("cmi.core.student_name");document.getElementById("ardoraAlumSCORM").innerHTML="<p>"+aluName+"</p>";
 $("#ardoraAlumSCORM").click(function(){var widthAlum=$("#ardoraAlumSCORM").css("width");

@@ -1,15 +1,10 @@
 //Creado con Ardora - www.webardora.net
 //bajo licencia Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 //para otros usos contacte con el autor
-var timeInterval; $(document).ready(function() {paintOk();randomSort();timeInterval=setInterval("paintTab()",1000);
+var timeInterval; $(document).ready(function() {randomSort();timeInterval=setInterval("paintTab()",1000);
 var canWidth=$("#ardoraAct").css("width").replace("px","");var canHeight=$("#ardoraAct").css("height").replace("px","");$("#ardoraActCanvas").attr({"width": canWidth,"height": canHeight})
 $("#ardoraActCanvasAnim").attr({"width": canWidth,"height": canHeight});
-$("#buttonOk").mouseenter(function(){$(this).css("-webkit-box-shadow"," 0px 0px 0px rgba(50, 50, 50, 0.5)");
-$(this).css("box-shadow" , "0px 0px 0px rgba(50, 50, 50, 0.75)");removeOk();
-}).mouseleave(function() { $(this).css("-webkit-box-shadow"," 4px 4px 4px rgba(50, 50, 50, 0.5)"); $(this).css("-moz-box-shadow", "4px 4px 4px rgba(50, 50, 50, 0.5)");$(this).css("box-shadow" , "4px 4px 4px rgba(50,50,50,0.5)"); paintOk();}).mousedown(function(){if (typeGame!=99){isCorrect();}})
 initAct();})
-function paintOk() {document.getElementById("outerRect").setAttribute("fill", colorButton);document.getElementById("stop1").setAttribute("stop-color", colorBack);document.getElementById("stop2").setAttribute("stop-color", colorSele);document.getElementById("innerRect").setAttribute("stroke", colorText);document.getElementById("buttonText").setAttribute("fill", colorText);}
-function removeOk() {document.getElementById("outerRect").setAttribute("fill", colorSele);document.getElementById("stop1").setAttribute("stop-color", colorBack);document.getElementById("stop2").setAttribute("stop-color", colorButton);document.getElementById("innerRect").setAttribute("stroke", colorText);document.getElementById("buttonText").setAttribute("fill", colorText);}
 function paintTab() {var svgNS = "http://www.w3.org/2000/svg";var container = document.getElementById("ardoraTab");var oldSVG = document.getElementById("ardoraTabSVG");if (oldSVG) {container.removeChild(oldSVG);};var totalHeight = 1;if (tiTime) {totalHeight += 85 + 3;};if (tiSuccesses) {totalHeight += 45 + 3;};if (tiAttempts) {totalHeight += 45 + 3;};if (tiScore) {totalHeight += 45;};totalHeight=totalHeight+3;var svg = document.createElementNS(svgNS, "svg");svg.setAttribute("id", "ardoraTabSVG");svg.setAttribute("width", "70");svg.setAttribute("height", totalHeight.toString());
 var defs = document.createElementNS(svgNS, "defs");if (tiTime) {if (!isShowMessage) {timeAct -= 1;};if (timeAct == 0) {goTime();};var gradTimer = document.createElementNS(svgNS, "radialGradient");gradTimer.setAttribute("id", "gradTimer");gradTimer.setAttribute("cx", "35");gradTimer.setAttribute("cy", "54");gradTimer.setAttribute("r", "25");gradTimer.setAttribute("fx", "35");gradTimer.setAttribute("fy", "54");
 var stop1 = document.createElementNS(svgNS, "stop");stop1.setAttribute("offset", "0%");stop1.setAttribute("stop-color", colorBack);gradTimer.appendChild(stop1);var stop2 = document.createElementNS(svgNS, "stop");stop2.setAttribute("offset", "100%");stop2.setAttribute("stop-color", colorButton);gradTimer.appendChild(stop2);defs.appendChild(gradTimer);};svg.appendChild(defs);
@@ -72,6 +67,9 @@ function goURL(url,seg,tar,tM,tT){var state;if (tM == "Ok") {state="ok";};if (tM
 newWin = setTimeout("opURL('"+url+"','"+seg+"','"+tar+"','"+tM+"','"+tT+"')",seg*1000);}
 function opURL(url, seg, tar, tM,tT) {if (url != "") {window.open(url,tar)};if (tM == "Ok" && goURLNext ) {parent.avanza();};if (tM == "Attempts" && goURLRepeat){parent.recarga()};if (tM == "Time" && tT==0 && goURLRepeat){parent.recarga()};if (tM == "Time" && tT==2 && goURLRepeat){parent.recarga()}}
 function cssColors(){
-$("body").css("background-color",colorBack);$("#ardoraMain").css("color",colorText);$("#ardoraMain").css("font-family",fEnun);$("#ardoraAct").css("font-family",fActi);$("#ardoraTag").css("font-family",fActi);
-$(".bGame").css("backgroundColor",colorButton);$(".bGame").css("color",colorBack);
+$("body").css("background-color",colorBack);
+$("#ardoraMain").css("color",colorText);
+if ($(".txtCell_input").length !=0) { $(".txtCell_input").css("background-color",colorBack); $(".txtCell_input").css("color",colorText);}
+if ($(".txtCell_txt").length !=0) { $(".txtCell_txt").css("background-color",colorBack)}
+$("#ardoraMain").css("font-family",fEnun); $(".txtCell").css("font-family",fActi);
 }
